@@ -1,0 +1,50 @@
+[project]
+name = "mcp-weather-server"
+version = "0.1.0"
+description = "A simple MCP server providing weather data"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Weather MCP Team" }]
+keywords = ["mcp", "weather", "api"]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "anyio>=4.0.0",
+    "click>=8.1.0",
+    "httpx>=0.24.0",
+    "mcp>=1.0.0",
+    "pydantic>=2.0.0",
+    "uvicorn>=0.24.0",
+]
+
+[project.scripts]
+mcp-weather-server = "mcp_weather_server.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mcp_weather_server"]
+
+[tool.pyright]
+include = ["mcp_weather_server"]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.setuptools.dev-dependencies]
+dev = ["pyright>=1.1.379", "pytest>=8.0.0", "ruff>=0.6.0"]

@@ -1,0 +1,47 @@
+[project]
+name = "weather-client"
+version = "0.1.0"
+description = "A client application for the MCP Weather Server"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Weather MCP Team" }]
+keywords = ["mcp", "weather", "client", "flask"]
+license = { text = "MIT" }
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+]
+dependencies = [
+    "flask>=2.0.0",
+    "mcp>=1.0.0",
+    "mcp-weather-server",  # Requires the server package
+]
+
+[project.scripts]
+weather-client = "weather_client.app:app.run"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["weather_client"]
+
+[tool.pyright]
+include = ["weather_client"]
+venvPath = "."
+venv = ".venv"
+
+[tool.ruff.lint]
+select = ["E", "F", "I"]
+ignore = []
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.setuptools.dev-dependencies]
+dev = ["pyright>=1.1.379", "pytest>=8.0.0", "ruff>=0.6.0"]
